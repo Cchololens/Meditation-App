@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f687e909f26975d4081496d120892b7b, type: 3}
+  m_Name: HPVRSpatialAudioSettings
+  m_EditorClassIdentifier: 
+  LicenseType: 4
+  ClientIDBytes: 61522ae55d98268e2ccbab07c9d4f6feb7da8c2e480483c10978c33e6fbdcedfd910c06230eb2230f5b5614dae39af24
+  AccessKeyBytes: 6a7fcd514d3938151b206c91c3117a4b81403df429bf56bb6d259f9fccabc9b50e25082714bdb336a146c76c491cb51c580d5cd3781a0e87a36e2063cf5d03c32f0b17da7c7a4710ecc1c293cf8e811a
