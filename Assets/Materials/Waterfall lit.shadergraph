@@ -1701,7 +1701,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "59b62fe9a4bb473185f41f8cbeffbb9f",
     "m_Id": 0,
-    "m_DisplayName": "Scale",
+    "m_DisplayName": "Density",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
