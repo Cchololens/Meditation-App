@@ -9,22 +9,20 @@ public class MeditationManager : MonoBehaviour
 
     public enum FadeType { In, Out };
 
-    [Header("User Set")]
-    [SerializeField] private bool day = true;
+    [Header("Game Objects")]
+    public ParticleSystem wind;
+    public ParticleSystem breatheIn;
+    public ParticleSystem breatheOut;
     [SerializeField] private UnityEngine.Rendering.Volume volume;
+    public GameObject trigger;
 
-
+    [Header("User Set Variables")]
+    [SerializeField] private bool day = true;
     [SerializeField] private float dayTransitionDuration = 10;
     [SerializeField] private float dayDelayDuration = 10;
     [SerializeField] private float whiteTransitionDuration = 30;
     [SerializeField] private float whiteDuration = 30;
 
-    //[Range(0.0F, 1.0F)]
-    //public float transitionPercent; // percent time takes for both ease-in and ease-out of meditation
-
-    public ParticleSystem wind;
-    //public ParticleSystem breatheIn;
-    //public ParticleSystem breatheOut;
 
     [Header("Private Variables - Not Changeable")]
     [SerializeField] private float timeElapsed = 0;
