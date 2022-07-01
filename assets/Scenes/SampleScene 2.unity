@@ -5039,16 +5039,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wind: {fileID: 1064762816}
-  breatheIn: {fileID: 1898550671}
-  breatheOut: {fileID: 613708897}
+  breathIn: {fileID: 1898550671}
+  breathOut: {fileID: 613708897}
   volume: {fileID: 524618785}
-  trigger: {fileID: 0}
+  trigger: {fileID: 1312063932}
   day: 1
-  dayTransitionDuration: 5
-  dayDelayDuration: 5
-  whiteTransitionDuration: 10
-  whiteDuration: 5
+  dayTransitionDuration: 1
+  dayDelayDuration: 0
+  whiteTransitionDuration: 1
+  whiteDuration: 30
+  breathingIntervalDuration: 3
+  breathingEmissionDuration: 0.6
   timeElapsed: 0
+  breathingIn: 1
 --- !u!4 &135547509
 Transform:
   m_ObjectHideFlags: 0
@@ -5148,7 +5151,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197142804}
-  m_Mesh: {fileID: 1534544894}
+  m_Mesh: {fileID: 1533048690}
 --- !u!4 &197142808
 Transform:
   m_ObjectHideFlags: 0
@@ -5540,7 +5543,7 @@ GameObject:
   - component: {fileID: 613708897}
   - component: {fileID: 613708896}
   m_Layer: 3
-  m_Name: BreatheOut
+  m_Name: BreathOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35735,13 +35738,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!43 &1534544894
+--- !u!43 &1533048690
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterVolume-26850
+  m_Name: WaterVolume-26852
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -36143,12 +36146,12 @@ GameObject:
   - component: {fileID: 1898550670}
   - component: {fileID: 1898550672}
   m_Layer: 3
-  m_Name: BreatheIn
+  m_Name: BreathIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1898550669
 Transform:
   m_ObjectHideFlags: 0

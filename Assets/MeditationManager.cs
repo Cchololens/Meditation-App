@@ -11,29 +11,37 @@ public class MeditationManager : MonoBehaviour
 
     [Header("Game Objects")]
     public ParticleSystem wind;
-    public ParticleSystem breatheIn;
-    public ParticleSystem breatheOut;
+    public ParticleSystem breathIn;
+    public ParticleSystem breathOut;
+    private ParticleSystem.EmissionModule breathInEmission;
+    private ParticleSystem.EmissionModule breathOutEmission;
     [SerializeField] private UnityEngine.Rendering.Volume volume;
     public GameObject trigger;
 
-    [Header("User Set Variables")]
+    [Header("User Set Variables")] //in seconds
     [SerializeField] private bool day = true;
     [SerializeField] private float dayTransitionDuration = 10;
     [SerializeField] private float dayDelayDuration = 10;
     [SerializeField] private float whiteTransitionDuration = 30;
     [SerializeField] private float whiteDuration = 30;
+    [SerializeField] private float breathingIntervalDuration = 3;
+    [SerializeField] private float breathingEmissionDuration = 1;
 
 
     [Header("Private Variables - Not Changeable")]
     [SerializeField] private float timeElapsed = 0;
+    [SerializeField] private bool breathingIn = true;
 
 
     // Start is called before the first frame update
     void Start()
     {
         volume.weight = 0.0F;
-        //totalDuration = easeInDuration + easeOutDuration;
 
+        breathInEmission = breathIn.emission;
+        breathOutEmission = breathOut.emission;
+        breathInEmission.enabled = false;
+        breathOutEmission.enabled = false;
 
         if (RenderSettings.skybox.GetFloat("_CubemapTransition") < .5)
         {
@@ -68,7 +76,12 @@ public class MeditationManager : MonoBehaviour
             whiteTransitionDuration, 
             FadeType.In));
 
+        var breathingCoroutine = StartCoroutine(AlternateBreathing(whiteDuration));
         yield return new WaitForSeconds(whiteDuration);
+        //clean up previous couroutine
+        StopCoroutine(breathingCoroutine);
+        breathInEmission.enabled = false;
+        breathOutEmission.enabled = false;
 
         yield return StartCoroutine(Fade(
             (result) => volume.weight = result,
@@ -103,29 +116,62 @@ public class MeditationManager : MonoBehaviour
 
             //yield return new WaitForSeconds(transitionDuration);
     }
-    
 
-    /*
-    private IEnumerator FadeIn(ParticleSystem ps, float transitionTime)
+
+    //needs to be stopped and cleaned up outside coroutine
+    private IEnumerator AlternateBreathing(float duration)
     {
-        Debug.Log("aaa");
-        float timer = 0.0F;
-
-        //Material mat = pRenderer.material;
-
-        while (timer < transitionTime)
+        while (true)
         {
-            var emission = ps.emission;
-            //emission.rate = 0;
-            emission.rateOverTime = 0;
-            emission.rateOverDistance = 0;
-
-            //var color = new Color(255f, 255f, 255f, 0f);
-            //mat.color = color;
-            timer++;
+            if ((!breathingIn && breathInEmission.enabled) || (breathingIn && breathOutEmission.enabled)) //took breath
+            {
+                breathInEmission.enabled = false;
+                breathOutEmission.enabled = false; //turn off breath
+                yield return new WaitForSeconds(breathingIntervalDuration);
+            }
+            else if (breathingIn) //taking breath
+            {
+                breathInEmission.enabled = true;
+                breathOutEmission.enabled = false; //turn on breath
+                breathingIn = !breathingIn;
+                yield return new WaitForSeconds(breathingEmissionDuration);
+            }
+            else
+            {
+                breathInEmission.enabled = false;
+                breathOutEmission.enabled = true; //turn on breath
+                breathingIn = !breathingIn;
+                yield return new WaitForSeconds(breathingEmissionDuration);
+            }
         }
-        yield return new WaitForSeconds(transitionTime);
-    }
-    */
 
-}
+        yield break;
+       
+    }
+
+
+
+        /*
+        private IEnumerator FadeIn(ParticleSystem ps, float transitionTime)
+        {
+            Debug.Log("aaa");
+            float timer = 0.0F;
+
+            //Material mat = pRenderer.material;
+
+            while (timer < transitionTime)
+            {
+                var emission = ps.emission;
+                //emission.rate = 0;
+                emission.rateOverTime = 0;
+                emission.rateOverDistance = 0;
+
+                //var color = new Color(255f, 255f, 255f, 0f);
+                //mat.color = color;
+                timer++;
+            }
+            yield return new WaitForSeconds(transitionTime);
+        }
+        */
+
+    }
