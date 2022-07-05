@@ -16,7 +16,7 @@ public class MeditationManager : MonoBehaviour
     private ParticleSystem.EmissionModule breathInEmission;
     private ParticleSystem.EmissionModule breathOutEmission;
     [SerializeField] private UnityEngine.Rendering.Volume volume;
-    public GameObject trigger;
+    public MeditationTrigger trigger;
 
     [Header("User Set Variables")] //in seconds
     [SerializeField] private bool day = true;
@@ -36,7 +36,14 @@ public class MeditationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetUpMeditation();
+    }
+
+    private void SetUpMeditation()
+    {
+        //set-up
         volume.weight = 0.0F;
+        RenderSettings.skybox.SetFloat("_CubemapTransition", 0.0F);
 
         breathInEmission = breathIn.emission;
         breathOutEmission = breathOut.emission;
@@ -52,18 +59,20 @@ public class MeditationManager : MonoBehaviour
             day = false;
         }
 
-        StartCoroutine(SequenceStart());
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void StartMeditation()
     {
-      
+        StartCoroutine(MeditationSequence());
     }
 
     //sequence of animations
-    private IEnumerator SequenceStart()
+    private IEnumerator MeditationSequence()
     {
+        SetUpMeditation();
+      
+        //sequence
         yield return StartCoroutine(Fade(
             (result) => RenderSettings.skybox.SetFloat("_CubemapTransition", result),
             dayTransitionDuration,
@@ -94,10 +103,13 @@ public class MeditationManager : MonoBehaviour
             (result) => RenderSettings.skybox.SetFloat("_CubemapTransition", result),
             dayTransitionDuration,
             FadeType.Out));
+
+        trigger.OnEndMeditation();
     }
 
+
     //takes a float value and lerps it across a duration
-    private IEnumerator Fade( Action<float> value, float transitionDuration, FadeType fadeType)
+    public IEnumerator Fade( Action<float> value, float transitionDuration, FadeType fadeType)
     {
             float timeElapsed = 0.0F;
             
