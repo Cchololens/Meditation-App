@@ -50,6 +50,8 @@ public class MeditationTrigger : MonoBehaviour
             time,
             MeditationManager.FadeType.Out);
 
+        SetColor(0.0f);
+
         yield return new WaitForSeconds(1);
 
         manager.StartMeditation();
