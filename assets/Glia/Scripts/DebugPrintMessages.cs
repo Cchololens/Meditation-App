@@ -1,4 +1,4 @@
-// (c) Copyright 2019-2021 HP Development Company, L.P.
+// (c) Copyright 2019-2021 HP Development Company, L.P. 
 
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +6,7 @@ using UnityEngine;
 using HP.Omnicept;
 using HP.Omnicept.Messaging;
 using HP.Omnicept.Messaging.Messages;
+using System.IO;
 
 public class DebugPrintMessages : MonoBehaviour
 {
@@ -17,8 +18,10 @@ public class DebugPrintMessages : MonoBehaviour
     private bool showPPGMessages = true;
     [SerializeField]
     private bool showCognitiveLoadMessages = true;
+
     [SerializeField]
     private bool showEyeTrackingMessages = true;
+
     [SerializeField]
     private bool showVsyncMessages = true;
     [SerializeField]
@@ -27,11 +30,12 @@ public class DebugPrintMessages : MonoBehaviour
     private bool showCameraImageTexture = true;
     [SerializeField]
     private bool showIMUMessages = true;
-    [SerializeField]
-    private bool showSubscriptionResultListMessages = true;
 
     public Material cameraImageMat;
     private Texture2D cameraImageTex2D;
+
+    private string clDocumentName = Application.streamingAssetsPath + "/Data/" + "CognitiveLoad.csv";
+    private string hrDocumentName = Application.streamingAssetsPath + "/Data/" + "HeartRate.csv";
 
     public void Start()
     {
@@ -40,6 +44,12 @@ public class DebugPrintMessages : MonoBehaviour
         {
             cameraImageMat.mainTexture = cameraImageTex2D;
         }
+        Directory.CreateDirectory(Application.streamingAssetsPath + "/Data/");
+        File.Delete(clDocumentName);
+        File.WriteAllText(clDocumentName, "Time,CognitiveLoadValue,StandardDeviation,DataState\r\n");
+        File.Delete(hrDocumentName);
+        File.WriteAllText(hrDocumentName, "Time,Rate\r\n");
+
     }
 
     public void OnDestroy()
@@ -52,6 +62,7 @@ public class DebugPrintMessages : MonoBehaviour
         if (showHeartRateMessages && hr != null)
         {
             Debug.Log(hr);
+            File.AppendAllText(hrDocumentName, System.DateTime.Now.ToString("hh:mm:ss") + "," + hr.Rate + "\r\n");
         }
     }
 
@@ -76,6 +87,7 @@ public class DebugPrintMessages : MonoBehaviour
         if (showCognitiveLoadMessages && cl != null)
         {
             Debug.Log(cl);
+            File.AppendAllText(clDocumentName, System.DateTime.Now.ToString("hh:mm:ss") + "," + cl.CognitiveLoadValue + "," + cl.StandardDeviation + "," + cl.DataState + "\r\n");
         }
     }
 
@@ -128,13 +140,5 @@ public class DebugPrintMessages : MonoBehaviour
     public void ConnectionFailureHandler(HP.Omnicept.Errors.ClientHandshakeError error)
     {
         Debug.Log("Failed to connect: " + error);
-    }
-
-    public void SubscriptionResultListHandler(SubscriptionResultList SRLmsg)
-    {
-        if (showSubscriptionResultListMessages && SRLmsg != null)
-        {
-            Debug.Log(SRLmsg);
-        }
     }
 }
