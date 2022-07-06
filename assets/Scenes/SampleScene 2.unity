@@ -5048,7 +5048,7 @@ MonoBehaviour:
   dayTransitionDuration: 20
   dayDelayDuration: 10
   whiteTransitionDuration: 30
-  whiteDuration: 10
+  whiteDuration: 120
   breathingIntervalDuration: 3.1
   breathingEmissionDuration: 2.75
   musicFadeDuration: 52
