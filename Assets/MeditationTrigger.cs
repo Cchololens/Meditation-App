@@ -8,6 +8,7 @@ public class MeditationTrigger : MonoBehaviour
     public Material mat;
     public Collider collider;
     public MeditationManager manager;
+    public AudioManager audioManager;
     public float fadeTime = 1;
 
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class MeditationTrigger : MonoBehaviour
 
     public IEnumerator FadeOutTrigger(float time)
     {
+        audioManager.Play("TriggerStart");
         collider.enabled = false; //needs to be first to not trigger again
 
         yield return manager.Fade(
@@ -63,6 +65,7 @@ public class MeditationTrigger : MonoBehaviour
            MeditationManager.FadeType.In);
 
         collider.enabled = true;
+        audioManager.Play("TriggerEnd");
 
     }
 

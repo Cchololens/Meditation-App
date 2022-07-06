@@ -5044,10 +5044,10 @@ MonoBehaviour:
   volume: {fileID: 524618785}
   trigger: {fileID: 1312063937}
   day: 1
-  dayTransitionDuration: 30
-  dayDelayDuration: 2
-  whiteTransitionDuration: 10
-  whiteDuration: 60
+  dayTransitionDuration: 20
+  dayDelayDuration: 10
+  whiteTransitionDuration: 30
+  whiteDuration: 120
   breathingIntervalDuration: 3
   breathingEmissionDuration: 0.6
   timeElapsed: 0
@@ -25969,7 +25969,8 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 377b057a81398b641b21885c40521483, type: 2}
   collider: {fileID: 0}
   manager: {fileID: 135547508}
-  fadeTime: 1
+  audioManager: {fileID: 1995625396}
+  fadeTime: 0.6
 --- !u!1 &1324902676
 GameObject:
   m_ObjectHideFlags: 0
@@ -40890,10 +40891,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: Hm
+    clip: {fileID: 8300000, guid: b4886de99b2657b48888cb784a51aa62, type: 3}
+    volume: 1
     pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: TriggerStart
+    clip: {fileID: 8300000, guid: b4886de99b2657b48888cb784a51aa62, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TriggerEnd
+    clip: {fileID: 8300000, guid: b4886de99b2657b48888cb784a51aa62, type: 3}
+    volume: 0.8
+    pitch: 1
     loop: 0
     source: {fileID: 0}
 --- !u!4 &1995625397
