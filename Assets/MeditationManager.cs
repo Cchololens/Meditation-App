@@ -16,7 +16,7 @@ public class MeditationManager : MonoBehaviour
     private ParticleSystem.EmissionModule breathInEmission;
     private ParticleSystem.EmissionModule breathOutEmission;
     [SerializeField] private UnityEngine.Rendering.Volume volume;
-    public MeditationTrigger trigger;
+    public BubbleTrigger trigger;
     public AudioManager audioManager;
 
     [Header("User Set Variables")] //in seconds

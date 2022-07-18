@@ -11,6 +11,9 @@ using System.IO;
 public class DebugPrintMessages : MonoBehaviour
 {
     [SerializeField]
+    private int num = 1;
+
+    [SerializeField]
     private bool showHeartRateMessages = true;
     [SerializeField]
     private bool showHeartRateVariabilityMessages = true;
@@ -34,8 +37,8 @@ public class DebugPrintMessages : MonoBehaviour
     public Material cameraImageMat;
     private Texture2D cameraImageTex2D;
 
-    private string clDocumentName = Application.streamingAssetsPath + "/Data/" + "CognitiveLoad.csv";
-    private string hrDocumentName = Application.streamingAssetsPath + "/Data/" + "HeartRate.csv";
+    private string clDocumentName;
+    private string hrDocumentName;
 
     public void Start()
     {
@@ -44,11 +47,24 @@ public class DebugPrintMessages : MonoBehaviour
         {
             cameraImageMat.mainTexture = cameraImageTex2D;
         }
+
+        num = PlayerPrefs.GetInt("num");
+        clDocumentName = Application.streamingAssetsPath + "/Data/" + "CognitiveLoad-" + num + ".csv";
+        hrDocumentName = Application.streamingAssetsPath + "/Data/" + "HeartRate-" + num + ".csv";
+
         Directory.CreateDirectory(Application.streamingAssetsPath + "/Data/");
-        File.Delete(clDocumentName);
-        File.WriteAllText(clDocumentName, "Time,CognitiveLoadValue,StandardDeviation,DataState\r\n");
-        File.Delete(hrDocumentName);
-        File.WriteAllText(hrDocumentName, "Time,Rate\r\n");
+        //File.Delete(clDocumentName);
+        if (!System.IO.File.Exists(clDocumentName))
+        {
+            File.WriteAllText(clDocumentName, "Time,CognitiveLoadValue,StandardDeviation,DataState\r\n");
+        }
+        //File.Delete(hrDocumentName);
+        if (!System.IO.File.Exists(hrDocumentName))
+        {
+            File.WriteAllText(hrDocumentName, "Time,Rate\r\n");
+        }
+        PlayerPrefs.SetInt("num", num+1);
+        PlayerPrefs.Save();
 
     }
 
