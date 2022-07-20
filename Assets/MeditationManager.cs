@@ -16,7 +16,8 @@ public class MeditationManager : MonoBehaviour
     private ParticleSystem.EmissionModule breathInEmission;
     private ParticleSystem.EmissionModule breathOutEmission;
     [SerializeField] private UnityEngine.Rendering.Volume volume;
-    public MeditationTrigger trigger;
+    public BubbleTrigger trigger;
+    public AudioManager audioManager;
 
     [Header("User Set Variables")] //in seconds
     [SerializeField] private bool day = true;
@@ -26,7 +27,7 @@ public class MeditationManager : MonoBehaviour
     [SerializeField] private float whiteDuration = 30;
     [SerializeField] private float breathingIntervalDuration = 3;
     [SerializeField] private float breathingEmissionDuration = 1;
-
+    [SerializeField] private float musicFadeDuration = 30;
 
     [Header("Private Variables - Not Changeable")]
     [SerializeField] private float timeElapsed = 0;
@@ -80,6 +81,8 @@ public class MeditationManager : MonoBehaviour
 
         yield return new WaitForSeconds(dayDelayDuration);
 
+        audioManager.Play("MeditationMusic");
+
         yield return StartCoroutine(Fade( 
             (result) => volume.weight = result, 
             whiteTransitionDuration, 
@@ -91,6 +94,8 @@ public class MeditationManager : MonoBehaviour
         StopCoroutine(breathingCoroutine);
         breathInEmission.enabled = false;
         breathOutEmission.enabled = false;
+
+        audioManager.FadeOut("MeditationMusic", musicFadeDuration);
 
         yield return StartCoroutine(Fade(
             (result) => volume.weight = result,
