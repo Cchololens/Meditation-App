@@ -6,11 +6,11 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DirtFantasy 1
-  m_DiffuseTexture: {fileID: 2800000, guid: af53ed92faa41fd4ebd43ac7e1a8c086, type: 3}
-  m_NormalMapTexture: {fileID: 0}
+  m_Name: DirtFantasy 2
+  m_DiffuseTexture: {fileID: 2800000, guid: 87a98dc20286b194c8e608e017e9150a, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 4c1980fcd019dd74f92f791c46aabadf, type: 3}
   m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: 1, y: 1}
+  m_TileSize: {x: 20, y: 20}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
