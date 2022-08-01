@@ -109,9 +109,9 @@ public class MeditationManager : MonoBehaviour
             dayTransitionDuration,
             FadeType.Out));
 
-        trigger.OnEndMeditation();
+        trigger.OnEndMeditation(); 
     }
-
+    
 
     //takes a float value and lerps it across a duration
     public IEnumerator Fade( Action<float> value, float transitionDuration, FadeType fadeType)
