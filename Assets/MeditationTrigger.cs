@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeditationTrigger : MonoBehaviour
+
+/**
+ * Starts the meditation sequence when hand enters a trigger object. 
+ * Currently not used. Do not use if using other triggers to start meditation.
+ */
+public class MeditationTrigger : SharedFunction
 {
 
     public Material mat;
-    public Collider collider;
+    public Collider mCollider;
     public MeditationManager manager;
     public AudioManager audioManager;
     public float fadeTime = 1;
@@ -15,14 +20,9 @@ public class MeditationTrigger : MonoBehaviour
     void Start()
     {
         mat = GetComponent<Renderer>().material;
-        collider = GetComponent<Collider>();
+        mCollider = GetComponent<Collider>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider col)
     {
@@ -43,12 +43,12 @@ public class MeditationTrigger : MonoBehaviour
     public IEnumerator FadeOutTrigger(float time)
     {
         audioManager.Play("TriggerStart");
-        collider.enabled = false; //needs to be first to not trigger again
+        mCollider.enabled = false; //needs to be first to not trigger again
 
-        yield return manager.Fade(
+        yield return Fade(
             (result) => SetColor(result),
             time,
-            MeditationManager.FadeType.Out);
+            FadeType.Out);
 
         SetColor(0.0f);
 
@@ -61,12 +61,12 @@ public class MeditationTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
-        yield return manager.Fade(
+        yield return Fade(
            (result) => SetColor(result),
            time,
-           MeditationManager.FadeType.In);
+           FadeType.In);
 
-        collider.enabled = true;
+        mCollider.enabled = true;
         audioManager.Play("TriggerEnd");
 
     }

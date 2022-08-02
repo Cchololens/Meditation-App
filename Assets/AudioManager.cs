@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : SharedFunction
 {
 
     public Sound[] sounds;
-    public enum FadeType { In, Out };
 
     void Awake()
     {
@@ -65,27 +64,6 @@ public class AudioManager : MonoBehaviour
           FadeType.In));
         s.source.Stop();
         s.source.volume = s.volume;
-    }
-
-    public IEnumerator Fade(Action<float> value, float transitionDuration, FadeType fadeType)
-    {
-        float timeElapsed = 0.0F;
-
-        while (timeElapsed < transitionDuration)
-        {
-            if (fadeType == FadeType.In)
-            {
-                value(Mathf.Lerp(0.0F, 1.0F, timeElapsed / transitionDuration));
-            }
-            else
-            {
-                value(Mathf.Lerp(1.0F, 0.0F, timeElapsed / transitionDuration));
-            }
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        //yield return new WaitForSeconds(transitionDuration);
     }
 
 }

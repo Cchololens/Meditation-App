@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System;
 
-public class MeditationManager : MonoBehaviour
+public class MeditationManager : SharedFunction
 {
-
-    public enum FadeType { In, Out };
 
     [Header("Game Objects")]
     public ParticleSystem wind;
@@ -20,7 +18,6 @@ public class MeditationManager : MonoBehaviour
     public AudioManager audioManager;
 
     [Header("User Set Variables")] //in seconds
-    [SerializeField] private bool day = true;
     [SerializeField] private float dayTransitionDuration = 10;
     [SerializeField] private float dayDelayDuration = 10;
     [SerializeField] private float whiteTransitionDuration = 30;
@@ -30,7 +27,6 @@ public class MeditationManager : MonoBehaviour
     [SerializeField] private float musicFadeDuration = 30;
 
     [Header("Private Variables - Not Changeable")]
-    [SerializeField] private float timeElapsed = 0;
     [SerializeField] private bool breathingIn = true;
 
 
@@ -51,14 +47,6 @@ public class MeditationManager : MonoBehaviour
         breathInEmission.enabled = false;
         breathOutEmission.enabled = false;
 
-        if (RenderSettings.skybox.GetFloat("_CubemapTransition") < .5)
-        {
-            day = true;
-        }
-        else
-        {
-            day = false;
-        }
 
     }
 
@@ -113,28 +101,6 @@ public class MeditationManager : MonoBehaviour
     }
     
 
-    //takes a float value and lerps it across a duration
-    public IEnumerator Fade( Action<float> value, float transitionDuration, FadeType fadeType)
-    {
-            float timeElapsed = 0.0F;
-            
-            while (timeElapsed < transitionDuration)
-            {
-                if (fadeType == FadeType.In) {
-                    value (Mathf.Lerp(0.0F, 1.0F, timeElapsed / transitionDuration));
-                }
-                else
-                {
-                    value ( Mathf.Lerp(1.0F, 0.0F, timeElapsed / transitionDuration));
-                }
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            //yield return new WaitForSeconds(transitionDuration);
-    }
-
-
     //needs to be stopped and cleaned up outside coroutine
     private IEnumerator AlternateBreathing(float duration)
     {
@@ -161,34 +127,9 @@ public class MeditationManager : MonoBehaviour
                 yield return new WaitForSeconds(breathingEmissionDuration);
             }
         }
-
-        yield break;
        
     }
 
 
-
-        /*
-        private IEnumerator FadeIn(ParticleSystem ps, float transitionTime)
-        {
-            Debug.Log("aaa");
-            float timer = 0.0F;
-
-            //Material mat = pRenderer.material;
-
-            while (timer < transitionTime)
-            {
-                var emission = ps.emission;
-                //emission.rate = 0;
-                emission.rateOverTime = 0;
-                emission.rateOverDistance = 0;
-
-                //var color = new Color(255f, 255f, 255f, 0f);
-                //mat.color = color;
-                timer++;
-            }
-            yield return new WaitForSeconds(transitionTime);
-        }
-        */
 
     }

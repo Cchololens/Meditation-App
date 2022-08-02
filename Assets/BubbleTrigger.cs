@@ -7,9 +7,9 @@ using System;
 using UnityEngine.SceneManagement;
 
 [ExecuteInEditMode]
-public class BubbleTrigger : MonoBehaviour
+public class BubbleTrigger : SharedFunction
 {
-    public enum FadeType { In, Out };
+
     public RectTransform fxHolder;
     public RectTransform fx;
     public Image circleFill;
@@ -123,27 +123,6 @@ public class BubbleTrigger : MonoBehaviour
     public void OnEndMeditation()
     {
         StartCoroutine(FadeInTrigger(fadeTime));
-    }
-
-    public IEnumerator Fade(Action<float> value, float transitionDuration, FadeType fadeType)
-    {
-        float timeElapsed = 0.0F;
-
-        while (timeElapsed < transitionDuration)
-        {
-            if (fadeType == FadeType.In)
-            {
-                value(Mathf.Lerp(0.0F, 1.0F, timeElapsed / transitionDuration));
-            }
-            else
-            {
-                value(Mathf.Lerp(1.0F, 0.0F, timeElapsed / transitionDuration));
-            }
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        //yield return new WaitForSeconds(transitionDuration);
     }
 
 
