@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/**
+ * Common functions and variables to share between classes. 
+ */
 public abstract class SharedFunction : MonoBehaviour
 {
     public enum FadeType { In, Out };

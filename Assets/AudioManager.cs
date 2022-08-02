@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+/**
+ * Manages and holds list of audio. 
+ */
 public class AudioManager : SharedFunction
 {
 

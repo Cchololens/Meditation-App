@@ -8,25 +8,37 @@ public class MeditationManager : SharedFunction
 {
 
     [Header("Game Objects")]
+    [Tooltip("Particle effects for wind")]
     public ParticleSystem wind;
+    [Tooltip("Particle effects for breathing in prompt")]
     public ParticleSystem breathIn;
+    [Tooltip("Particle effects for breathing out prompt")]
     public ParticleSystem breathOut;
     private ParticleSystem.EmissionModule breathInEmission;
     private ParticleSystem.EmissionModule breathOutEmission;
+    [Tooltip("Object for post processing effects")]
     [SerializeField] private UnityEngine.Rendering.Volume volume;
+    [Tooltip("Trigger to start meditation")]
     public BubbleTrigger trigger;
     public AudioManager audioManager;
 
-    [Header("User Set Variables")] //in seconds
-    [SerializeField] private float dayTransitionDuration = 10;
-    [SerializeField] private float dayDelayDuration = 10;
+    [Header("User Set Variables (in seconds)")]
+    [Tooltip("Time taken for day/night transition")]
+    [SerializeField] private float dayTransitionDuration = 30;
+    [Tooltip("Time delayed in between day/night transition and white transition")]
+    [SerializeField] private float dayDelayDuration = 15;
+    [Tooltip("Time taken to transition to fully white scene")]
     [SerializeField] private float whiteTransitionDuration = 30;
-    [SerializeField] private float whiteDuration = 30;
+    [Tooltip("Time that the white effect and breathing prompts last")]
+    [SerializeField] private float whiteDuration = 120;
+    [Tooltip("Time between switching breathing in/out prompts")]
     [SerializeField] private float breathingIntervalDuration = 3;
+    [Tooltip("Time that breathing particle effects stay on")]
     [SerializeField] private float breathingEmissionDuration = 1;
-    [SerializeField] private float musicFadeDuration = 30;
+    [Tooltip("Time it takes before music fades in. Should ideally fade in somewhere during transition to white.")]
+    [SerializeField] private float musicFadeDuration = 65;
 
-    [Header("Private Variables - Not Changeable")]
+    [Header("Exposed Variables - Not Changeable")]
     [SerializeField] private bool breathingIn = true;
 
 
@@ -36,9 +48,12 @@ public class MeditationManager : SharedFunction
         SetUpMeditation();
     }
 
+
+    /*
+     * Reset meditation space back to it's original state
+     */
     private void SetUpMeditation()
     {
-        //set-up
         volume.weight = 0.0F;
         RenderSettings.skybox.SetFloat("_CubemapTransition", 0.0F);
 
@@ -50,13 +65,16 @@ public class MeditationManager : SharedFunction
 
     }
 
-
     public void StartMeditation()
     {
         StartCoroutine(MeditationSequence());
     }
 
-    //sequence of animations
+
+    /*
+     * Sequence of events for the meditation.
+     * Transitions skybox throuday/night, white transition, starts breathing prompts
+     */
     private IEnumerator MeditationSequence()
     {
         SetUpMeditation();
@@ -101,7 +119,10 @@ public class MeditationManager : SharedFunction
     }
     
 
-    //needs to be stopped and cleaned up outside coroutine
+    /*
+     * Turns particle effect streams on/off in loop to prompt when to breathe. 
+     * Needs to be stopped and cleaned up outside coroutine.
+     */
     private IEnumerator AlternateBreathing(float duration)
     {
         while (true)
@@ -132,4 +153,4 @@ public class MeditationManager : SharedFunction
 
 
 
-    }
+}

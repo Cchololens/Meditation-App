@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Script added to camera to cast rays and to trigger events on ray collision
+ */
 public class GazeHover : MonoBehaviour
 {
+    [Tooltip("Length of the ray cast")]
     public float sightLength = 100f;
     private BubbleTrigger currentTrigger = null;
 

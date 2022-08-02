@@ -6,28 +6,43 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
 
+/*
+ * Trigger that starts an event after you hold your gaze on the trigger object for a set period of time.
+ */
 [ExecuteInEditMode]
 public class BubbleTrigger : SharedFunction
 {
-
+    [Header("Bubble Canvas Objects")]
     public RectTransform fxHolder;
     public RectTransform fx;
     public Image circleFill;
-    public float start;
-    public float stop;
-
-    [Range(0,1)]
-    public float progress = 0f;
-    public bool isRayHitting = false;
-    public float changeAmount = .005f;
-    public string sceneName = null;
-
-    bool triggerEventRunning = false;
     public GameObject group;
     public CanvasGroup canvasGroup;
+
+    [Header("Manager Objects")]
     public MeditationManager manager;
     public AudioManager audioManager;
-    public float fadeTime = 1;
+
+    [Header("User Set Variables")]
+    [Tooltip("Starting height of bubble's fill")]
+    public float start;
+    [Tooltip("Ending height of bubble's fill")]
+    public float stop;
+    [Tooltip("How much bubble is filled each tick you gaze at it.")]
+    public float changeAmount = .005f;
+    [Tooltip("Seconds it takes to fade bubble in/out")]
+    public float fadeTime = 1f;
+    [Tooltip("Scene to switch to. If null, starts meditation instead")]
+    public string sceneName = null;
+
+    [Header("Exposed Variables")]
+    [Tooltip("Percent that bubble is filled") , Range(0,1)]
+    public float progress = 0f;
+    [Tooltip("If camera's raycast is hitting object")]
+    public bool isRayHitting = false;
+    [Tooltip("Coroutine to start an event is running")]
+    bool triggerEventRunning = false;
+    
 
 
     // Start is called before the first frame update
