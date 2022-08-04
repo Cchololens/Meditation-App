@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sakura tree
+* source:	https://sketchfab.com/3d-models/sakura-tree-c5795e23566a414692042560e98a2306
+* author:	TatianaDevos (https://sketchfab.com/TatianaDevos)
+
+Model License:
+* license type:	CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions can not be distributed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sakura tree" (https://sketchfab.com/3d-models/sakura-tree-c5795e23566a414692042560e98a2306) by TatianaDevos (https://sketchfab.com/TatianaDevos) licensed under CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
