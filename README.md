@@ -18,11 +18,11 @@ To avoid overwhelming the user, this environment is designed as a simplistic sta
 
 ### Meditation Environment
 
-To reduce interruption and to boost the immersive experience, the application doesn't use human voiceover, rather it uses the sound of nature and reverbs of bells to create a relaxing experience. The environment uses a combination of calming blue colors and slowly moving elements (waterfall, trees, lake, wind, fireflies, etc.) to create a soothing, yet interesting oasis environment.
+To reduce interruption and to boost the immersive experience, the application doesn't use human voiceover, rather it uses the sound of nature and bell reverbs to create a relaxing experience. The environment uses a combination of calming blue colors and slowly moving elements (waterfall, trees, lake, wind, fireflies, etc.) to create a soothing, yet interesting oasis environment.
 
 The meditation experience cycles through a day-to-night-to-day cycle with a period of Deep Focus in between. The idea is to appeal to the user's internal clock to ease waking.
 
-During the state of Deep Focus, the color from the island fades away, creating a sense of "nothingness." The only colored item is the particle system for breathing in and out, which prompts the user to slow down and focus on their breathing. Hence, the project targets 3(vision, breathing, and sound) to enable a state of deep meditation, which helps lower the cognitive Load.
+During the state of Deep Focus, the color from the island fades away, creating a sense of "nothingness." The only colored item is the particle system for breathing in and out, which prompts the user to slow down and focus on their breathing. Hence, the project targets 3(vision, breathing, and sound) senses to enable a state of deep meditation, which helps lower the cognitive Load.
 
 # How To Use
 
