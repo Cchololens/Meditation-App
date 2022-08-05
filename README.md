@@ -4,7 +4,7 @@
 
 A VR meditation application designed to assist the Christiana Care Oasis rooms in helping staff relax. Away-sis utilizes biofeedback and cognitive load information, to help users better understand how their meditation session went.
 
-# Design
+## Design
 
 ### Home Space
 
@@ -24,14 +24,52 @@ The meditation experience cycles through a day-to-night-to-day cycle with a peri
 
 During the state of Deep Focus, the color from the island fades away, creating a sense of "nothingness." The only colored item is the particle system for breathing in and out, which prompts the user to slow down and focus on their breathing. Hence, the project targets 3(vision, breathing, and sound) senses to enable a state of deep meditation, which helps lower the cognitive Load.
 
-# How To Use
+## How To Set-Up
 
 The project uses Unity 2020.3.36f1 and is intended for the HP Reverb Omnicept G2 Headset. The application can run on any Windows Mixed Reality headset, but biofeedback data will only work with the specific HP headset.
 
-To fully utilize the biofeedback data, download HP Omnicept Tray and HP Omnicept Overlay. https://hpomnicept.zendesk.com/hc/en-us/articles/1500001463241-Use-Omnicept-Overlay-with-your-VR-Apps
+### Enabling the Sensors
+
+To fully utilize the biofeedback data, make sure the **Omnicept SDK** is downloaded (Project uses v1.14).
+
+- <https://developers.hp.com/omnicept/downloads>
+
+Plug in your HP headset and open the **HP Omnicept Tray App**.
+
+Once you open any application that uses the headset's sensors, you must accept the pop-up to add the application as an "Approved Client." You can also approve apps on the Tray App's Client screen.
+
+![HP Omnicept Tray Screen](Images/hpTray.png)
+
+### Running the Application
+
+The easiest way to run the application is by clicking on the included .exe files. 
+
+- **Away-sis_HomeStart** and **Away-sis_MeditationStart** starts the user in the home and meditation space respectively (If you want to skip the home space for demos).
+- Make sure you approve the client's request or the sensors will not work.
+- If you have the headset plugged in, the application should automatically work.
+- Collected .csv data will be output to the Away-sis_HomeStart_Data\StreamingAssets and Away-sis_MeditationStart_Data\StreamingAssets folders each time the application runs.
+
+If you want to debug the app, you can also run the project through Unity
+
+- Install Unity and Unity Editor version 2020.3.36f.
+- Open the Unity Hub, and in the Projects tab, open the root Meditation App folder. 
+- ![Unity Hub Screen](Images/unityHub.png)
+- Go to Window > General > Project 
+- ![Unity Hub Screen](Images/projectSettings.png)
+- Click on the OpenVR tab and switch Play Mode to "Windows Mixed Reality" 
+- ![Unity Hub Screen](Images/openVR.png)
+- Hit the play button at the top and everything should start playing in VR.
+
+
+### Using HP Overlay
+Download HP Omnicept Overlay as well, and then follow the following article to set it up.
+
+- <https://hpomnicept.zendesk.com/hc/en-us/articles/1500001463241-Use-Omnicept-Overlay-with-your-VR-Apps>
 
 Plug in your HP headset...
 
-# Technical Details
+## TroubleShooting
+
+## Technical Details
 The timing of the meditation and breathing can be set in the MeditationManager object.
 ![](Images/medManager.png)
