@@ -1,22 +1,28 @@
 # Away-sis
 
+</br>
+
 ![Preview](Images/preview.png)
 
-A VR meditation application designed to assist the Christiana Care Oasis rooms in helping staff relax. Away-sis utilizes biofeedback and cognitive load information, to help users better understand how their meditation session went.
+A VR meditation application designed to assist the Christiana Care Oasis rooms in helping staff relax. Away-sis utilizes biofeedback and cognitive load information to help users better understand their meditation sessions.
+
+</br>
 
 ---
+
+</br>
 
 ## Design
 
 ### Home Space
 
-The space is created as a floating zen garden consisting of a temple, a personal tree, a spirit guide, aesthetic sand patterns, and a collection of floating bubbles on top of a lake.
+The home space is created as a floating zen garden consisting of a temple, a personal tree, a spirit guide, aesthetic sand patterns, and a collection of floating bubbles on top of a lake.
 
 ![Picture of the Homespace](Images/homeSpace.png)
 
 To avoid overwhelming the user, this environment is designed as a simplistic starting point.
 
-- The space serves as an area to bide time as the HP headset calibrates.
+- This space serves as an area to bide time as the HP headset calibrates.
 - The user can select the type of meditation by choosing from various floating bubbles on the right.
 - The home space is also intended as an area to check feedback in the form of "Growth." To avoid assigning numbers to their quality of meditation, an abstract yet meaningful way to see their progress is created in the form of a tree which grows with the increase in the number of seconds spent under the "goldilocks zone". This feature is still a work in progress.
 
@@ -28,11 +34,13 @@ The meditation environment uses a combination of calming blue colors and slowly 
 
 ![Picture of the Homespace](Images/meditationSpace.png)
 
-To reduce interruption and to boost the immersive experience, the application doesn't use human voiceover, rather it uses the sound of nature and bell reverbs to create a relaxing experience. The meditation experience cycles through a day-to-night-to-day cycle with a period of Deep Focus in between. The idea is to appeal to the user's internal clock to ease waking.
+To reduce interruption and to boost the immersive experience, the application doesn't use human voiceover, rather it uses the sound of nature and bell reverbs to create a relaxing experience. The meditation cycles through a day-to-night-to-day cycle with a period of Deep Focus in between. The idea is to appeal to the user's internal clock to ease waking.
 
 During the state of Deep Focus, the color from the island fades away, creating a sense of "nothingness." The only colored item is the particle system for breathing in and out, which prompts the user to slow down and focus on their breathing. The project targets 3 (vision, breathing, and sound) senses to enable a state of deep meditation and to help lower the user's cognitive Load.
 
 ---
+
+</br>
 
 ## How To Set-Up
 
@@ -56,7 +64,7 @@ In the Client's tab, you will see all the applications that have access to the H
 
 ![HP Omnicept Tray Screen](Images/hpTray.png)
 
-Anytime a new application that uses the sensors is run, you will get a request to authorize it's access. Make sure you accept this request, or the sensors will not work.
+Anytime a new application that uses the sensors is run, you will get a request to authorize its access. Make sure you accept this request, or the sensors will not work.
 
 ![HP Omnicept Tray Popup](Images/hpTrayPopup.png)
 
@@ -96,13 +104,14 @@ If you want to debug the app, you can also run the project through Unity
 
 Open the HP Omnicept Overlay app
 
-- You can follow this guide for a more detailed walkthrough of setup 
-<https://hpomnicept.zendesk.com/hc/en-us/articles/1500001463241-Use-Omnicept-Overlay-with-your-VR-Apps>
+- You can follow this guide for a more detailed walkthrough of setup: <https://hpomnicept.zendesk.com/hc/en-us/articles/1500001463241-Use-Omnicept-Overlay-with-your-VR-Apps>
 - Approve it's authorization request from the HP Tray App
 - The camera and sensors should turn on
 - The headset needs to calibrate to each person. You should see the cognitive load graph start moving after someone puts the headset on for a minute.
 
 ---
+
+</br>
 
 ## TroubleShooting
 
@@ -120,18 +129,20 @@ If the headset runs the application, but is not getting sensor data:
 - Restart Away-sis
 - Approve any pop-ups on screen or requests in the Tray Application
 
-If you see the application runs on your desktop instead of in Windows Mixed Reality Portal or your headset.
+If the application run on your desktop, instead of on Windows Mixed Reality Portal or on your headset:
 
-- The headset may not have connect properly
+- The headset may not have connected properly
 - Check all the cable connections
 - Try restarting Windows Mixed Reality Portal
 - Try restarting Windows
 
 ---
 
+</br>
+
 ## Technical Details
 
-All custom scripts can be found in the Assets/Scripts folder. All of them are commented if you need a reference or are confused on what they do. Here are the few important ones to change:
+All custom scripts can be found in the Assets/Scripts folder. if you need a reference or are confused on what they do, all of them are commented. Here are the few important ones to be aware of:
 
 </br>
 
@@ -160,9 +171,9 @@ Any sound effects or audio that you want to play from scripts should be added to
 
 </br>
 
-The SharedFunction script is an abstract class inherited by most of the other scripts. Add any common functionality here if you find functions you need to use across multiple scripts.
+The SharedFunction script is an abstract class inherited by most other scripts. Add any common functionality here if you find functions you need to use across multiple scripts.
 
 ![Share Function Script](Images/sharedFunction.png)
 
- - Right now it just contains a generic function that linearly interpolates across time. 
- - This can be called via a Coroutine to create fade transitions. 
+- Right now it just contains a generic function that linearly interpolates across time
+- This can be called via Coroutines to create fade transitions
